@@ -1,0 +1,121 @@
+
+/* ---------style for pet picture----------- */
+#petPhoto{
+	display: inline;
+	float: center !important;
+	height: 200px;
+	width: 250px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+
+#petInfo {
+	margin: auto;
+}
+
+.favorite,
+.arrow{
+	margin-right: 50px;
+	margin-left: 50px;
+}
+.card-action {
+	padding: 5px !important;
+}
+.side-menu{
+	border-right: solid 5px #1B435D;
+	color: #1B435D;
+}
+
+/*------------------ modal styling ------------------------------*/
+#modalSection {
+  margin-top: 10px;
+
+}
+.runSearch, .clearAll, #log{
+  background-color: #1B435D;
+  font-family: 'Acme', sans-serif !important;
+}
+#heart {
+  background-color: #C54C82;
+  z-index: 5;
+}
+.logo {
+  width: 100px;
+}
+h4 {
+  color: #1B435D !important;
+  font-family: 'Acme', sans-serif !important;
+  margin: 0px;
+  padding: 0px;
+}
+.cardInfo {
+  color: #1B435D !important;
+  font-family: 'Acme', sans-serif !important;
+}
+h4, p, {
+  color: #1B435D !important;
+  font-family: 'Acme', sans-serif !important;
+}
+p {
+  color: #1B435D !important;
+  font-family: 'Acme', sans-serif !important;	
+}
+h4, #fave, #search, #admin, #logText {
+  font-family: 'Acme', sans-serif !important;
+}
+/*------------------ search bar styling -------------------------*/
+/* label color */
+.input-field {
+   color: #1B435D !important;
+   font-family: 'Acme', sans-serif !important;
+}
+  /* label underline focus color */
+.input-field input[type=text]:focus {
+   border-bottom: 1px solid #1B435D !important;
+   box-shadow: 0 1px 0 0 #1B435D !important;
+}
+.location {
+	color: #1B435D !important;
+}
+
+.dropdown-content li>a, .dropdown-content li>span{
+	color:#1B435D;
+}
+.white-text {
+	font-family: 'Acme', sans-serif !important;
+}
+
+.card-content {
+	margin: 10px !important;
+	padding: 0px !important;
+	display: flex;
+	justify-content: center;
+}
+.petCardInfo {
+	text-align: left;
+}
+
+/*------------------ media queries ------------------------------*/
+@media only screen and (max-width : 768px) {
+  
+}
+
+@media only screen and (min-width:400px) and (max-width : 480px) {
+  #modalSection {
+    margin-top: 10px;
+  }
+  .side-menu {
+    border-right: none;
+  }
+}
+
+@media only screen and (max-width : 375px) {
+  #modalSection {
+    margin-top: 10px;
+  }
+  .side-menu {
+    border-right: none;
+  }
+}

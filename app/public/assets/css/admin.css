@@ -1,0 +1,39 @@
+.bottomAlign {
+	align-items: flex-end;
+}
+
+.btn {
+	background-color: #1B435D;
+}
+
+#add, #remove, .side-menu {
+	color: #1B435D;
+	font-family: 'Acme', sans-serif !important;
+}
+a, .white-text {
+	font-family: 'Acme', sans-serif !important;
+}
+.warningMessage {
+	font-family: 'Acme', sans-serif !important;
+	color: white !important;
+	text-align: center;
+}
+.input-field {
+     color: #1B435D !important;
+   }
+#background {
+	background-color: #F1ED63;
+}
+
+.scrollable {
+    height: 550px;
+    overflow-y: auto;
+}
+
+.dropdown-content li>a, .dropdown-content li>span{
+	color:#1B435D;
+}
+
+.smallPic {
+	width: 75px;
+}

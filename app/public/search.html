@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch</title>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="325217804379-ho689du9mueiu3q688lpspcsqurf03u7.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/searchStyle.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/multiplePageStyle.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/login.css">
+    <!--font styling-->
+    <link href="https://fonts.googleapis.com/css?family=Acme|Amatic+SC" rel="stylesheet">
+    <!-- favicon link -->
+    <link href="assets/images/favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="assets/css/searchStyle.css">
+</head>
+
+<body>
+    <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <!-- Overlay content -->
+        <div class="overlay-content">
+            <button id="loginModalButton" data-target="loginModal" class="btn blue-grey waves-light waves-effect modal-close">Login</button>
+            <button id="signUpModalButton" data-target="signUpModal" class="btn blue-grey waves-light waves-effect modal-close">Sign Up</button>
+            <div id="oAuthSection" class="row">
+                <br>
+                <br>
+                <h4 class="white-text">Login or SignUp using: </h4>
+                <br>
+                <br>
+                <div class="col offset-s4 s4 offset-s4">
+                    <div class="g-signin2 center-align" data-onsuccess="onSignIn"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid content" id="mainColor">
+        <nav class="row">
+            <div class="nav-wrapper s12 m12 l12" id="headerFooter">
+                <img id="pawImage" src="assets/images/orangepaw.png" alt="pawPrint">
+                <a id="fetchLogo" href="/">Fetch</a>
+                <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a id="fave" class="right-align" href="/favorites">Favorites</a></li>
+                    <li><a id="admin" class="right-align" href="/admin">Admin</a></li>
+                    <li><a id="logText" onclick="openNav()">Login or Sign Up</a></li>  
+                </ul>
+                <br>
+                <ul class="side-nav" id="mobile">
+                    <li><a href="/favorites">Favorites</a></li>
+                    <li><a id="admin" href="/admin">Admin</a></li>
+                    <li><a class="logTextMobile" onclick="openNav()">Login or Sign Up</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col s12 m3 side-menu">
+                <section class="panel panel-primary">
+                    <div class="panel-heading">
+                        <!-- Form titles -->
+                        <h4 class="panel-title">Find your perfect pet</h4>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <div class="input-field col s12 m12 l12">
+                                <select id="type">
+                                  <option id="animalType" value="" disabled selected>Animal Type</option>
+                                  <option value="cat">Cat</option>
+                                  <option value="dog">Dog</option>
+                                </select>
+                            </div>
+                            <div class="input-field col s12 m12 l12">
+                                <select id="age">
+                                  <option value="" disabled selected>Age</option>
+                                  <option value="1">0-1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5+</option>
+                                </select>
+                            </div>
+                            <div class="input-field col s12 m12 l12">
+                                <select id="size">
+                                  <option value="" disabled selected>Size</option>
+                                  <option value="small">Small</option>
+                                  <option value="medium">Medium</option>
+                                  <option value="large">Large</option>
+                                </select>
+                            </div>
+                            <div class="input-field col s12 m12 l12">
+                                <select id="gender">
+                                  <option value="" disabled selected>Gender</option>
+                                  <option value="male">Male</option>
+                                  <option value="female">Female</option>
+                                </select>
+                            </div>
+                            <br>
+                            <br>
+                            <button type="submit" class="btn center-align col s5 hide-on-large-only runSearch"><i class="material-icons center-align">search</i></button>
+                            <button type="submit" class="btn center-align col s5 hide-on-med-and-down runSearch"><i class="material-icons left center-align">search</i>Search</button>
+                            <br>
+                            <br>
+                            <button type="button" class="btn center-align col s5 offset-s2 hide-on-large-only clearAll"><i class="material-icons center-align">delete</i></button>
+                            <button type="button" class="btn center-align col s5 offset-s2 hide-on-med-and-down clearAll"><i class="material-icons left center-align">delete</i>Clear</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+            <div id="modalSection" class="col s12 m9 valign-wrapper">
+                <div id="petInfo" class="card medium center col s12 m9">
+                    <div class="valign card-image">
+                        <img id="petPhoto" src="assets/images/adopt.jpg" alt="Pet">
+                        <!-- <span class="card-title"></span> -->
+                    </div>
+                    <div class="card-content">
+                        <p>The search for your perfect pet is just a few clicks away! Simply enter your ideal pet search parameters
+                            and start your adoption journey!</p>
+                    </div>
+                    <div class="card-action">
+                        <div class="col s6">
+                            <a class="btn-floating btn-large waves-effect waves-light favorite"><i class="fa fa-heart" id="heart" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="col s6">
+                            <a class="btn-floating btn-large waves-effect waves-light arrow"><i class="fa fa-arrow-right green" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <footer class="page-footer center" id='headerFooter'>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <small class="white-text">&copy; Created by:
+           <ul id="slide-out" class="side-nav">
+            <li>
+            <div class="userView">
+              <div class="background">
+                <img class="responsive-img" src="assets/images/pets.jpeg">
+              </div>
+              <a href="#!user"><img class="circle" alt="Tasha Casagni" src="assets/images/tasha.jpg"></a>
+              <a href="#!name"><span class="white-text name">Tasha Casagni</span></a>
+              <a href="#!email"><span class="white-text email">casagni708@hotmail.com</span></a>
+            </div>
+            </li>
+            <li><a href="https://github.com/Tasha-GitHub" class="waves-effect" target="_blank">Github <img src="assets/images/git.png"></a></li>
+            <li><a href="https://www.linkedin.com/in/tasha-casagni" class="waves-effect" target="_blank">Linkedin <img src="assets/images/linkedin.png"></a></li>
+            <li><a class="waves-effect" href="https://www.twitter.com/Tash1191" target="_blank">Twitter <img src="assets/images/twitter.png"></a></li>
+          </ul>
+          <a href="#" data-activates="slide-out" class="button-collapse tooltipped" data-position="top" data-delay="50" data-tooltip="Tasha's Social Networks.">Tasha</a>,
+
+
+           <ul id="slide-outj" class="side-nav">
+            <li>
+            <div class="userView">
+              <div class="background">
+                <img class="responsive-img" src="assets/images/pets.jpeg">
+              </div>
+              <a href="#!user"><img class="circle" alt="Jesse Phillip" src="assets/images/jesse.jpg"></a>
+              <a href="#!name"><span class="white-text name">Jesse Matherne</span></a>
+              <a href="#!email"><span class="white-text email">jessephilip@gmail.com</span></a>
+            </div>
+            </li>
+            <li><a href="https://github.com/jessephilip" class="waves-effect" target="_blank">Github <img src="assets/images/git.png"></a></li>
+            <li><a class="waves-effect" href="https://www.linkedin.com/in/jesse-matherne-07333255/" target="_blank">Linkedin <img src="assets/images/linkedin.png"></a></li>
+            <li><a class="waves-effect" href="https://twitter.com/JesseMatherne" target="_blank">Twitter <img src="assets/images/twitter.png"></a></li>
+          </ul>
+          <a href="#" data-activates="slide-outj" class="button-collapse tooltipped" data-position="top" data-delay="50" data-tooltip="Jesse's Social Networks.">Jesse</a>,
+
+           <ul id="slide-outm" class="side-nav">
+            <li>
+            <div class="userView">
+              <div class="background">
+                <img class="responsive-img" src="assets/images/pets.jpeg">
+              </div>
+              <a href="#!user"><img class="circle" alt="Shweta Rane" src="assets/images/shweta.jpg"></a>
+              <a href="#!name"><span class="white-text name">Shweta Rane</span></a>
+              <a href="#!email"><span class="white-text email">shvetacrane@gmail.com</span></a>
+            </div>
+            </li>
+            <li><a href="https://github.com/shwetarane" class="waves-effect" target="_blank">Github <img src="assets/images/git.png"></a></li>
+            <li><a href="https://www.linkedin.com/in/raneshweta?trk=hp-identity-photo" class="waves-effect" target="_blank">Linkedin <img src="assets/images/linkedin.png"></a></li>
+            <li><a class="waves-effect" href="https://twitter.com/ShwtaR" target="_blank">Twitter<img src="assets/images/twitter.png"></a></li>
+          </ul>
+          <a href="#" data-activates="slide-outm" class="button-collapse tooltipped" data-position="top" data-delay="50" data-tooltip="Shweta's Social Networks.">Shweta</a>,
+
+          <ul id="slide-outa" class="side-nav">
+            <li>
+            <div class="userView">
+              <div class="background">
+                <img class="responsive-img" src="assets/images/pets.jpeg">
+              </div>
+              <a href="#!user"><img class="circle" alt="Jess Rhodes" src="assets/images/jess.png"></a>
+              <a href="#!name"><span class="white-text name">Jess Rhodes</span></a>
+              <a href="#!email"><span class="white-text email">jess.rhodes.87@gmail.com</span></a>
+            </div>
+            </li>
+            <li><a href="https://github.com/JessieRhodes" class="waves-effect" target="_blank">Github <img src="assets/images/git.png"></a></li>
+            <li><a href="https://www.linkedin.com/in/jessie-rhodes-45100391" class="waves-effect" target="_blank">Linkedin <img src="assets/images/linkedin.png"></a></li>
+            <li><a class="waves-effect" href="https://twitter.com/jessienyasha" target="_blank">Twitter <img src="assets/images/twitter.png"></a></li>
+          </ul>
+          <a href="#" data-activates="slide-outa" class="button-collapse tooltipped" data-position="top" data-delay="50" data-tooltip="Jess's Social Networks.">Jess</a> 
+
+           and            
+
+           <ul id="slide-outr" class="side-nav">
+            <li>
+            <div class="userView">
+              <div class="background">
+                <img class="responsive-img" src="assets/images/pets.jpeg">
+              </div>
+              <a href="#!user"><img class="circle" alt="Randal Rowland" src="assets/images/randal.JPG"></a>
+              <a href="#!name"><span class="white-text name">Randal Rowland</span></a>
+              <a href="#!email"><span class="white-text email">r.rowland93@gmail.com</span></a>
+            </li>
+            <li><a href="https://www.github.com/RJRowland93" class="waves-effect" target="_blank">Github <img src="assets/images/git.png"></a></li>
+            <li><a href="https://www.linkedin.com/in/randal-rowland-186523124" class="waves-effect" target="_blank">Linkedin <img src="assets/images/linkedin.png"></a></li>
+            <li><a class="waves-effect" href="https://twitter.com/rjrowland" target="_blank">Twitter <img src="assets/images/twitter.png"></a></li>
+          </ul>
+          <a href="#" data-activates="slide-outr" class="button-collapse tooltipped" data-position="top" data-delay="50" data-tooltip="Randal's Social Networks.">Randal</a> 2016</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Modals for Login and Sign Up -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h4 class="center">Log Into Fetch</h4>
+            <div class="email row">
+                <div class="input-field col s12">
+                    <input id="emailLogin" type="email">
+                    <label for="emailLogin">Email</label>
+                </div>
+            </div>
+            <div class="password row">
+                <div class="input-field col s12">
+                    <input id="passwordLogin" type="password">
+                    <label for="passwordLogin">Password</label>
+                </div>
+            </div>
+            <button id="loginButton" class="btn blue-grey waves-effect waves-ligh w100" type="submit" name="action">Login</button>
+        </div>
+    </div>
+    <div id="signUpModal" class="modal">
+        <div class="modal-content">
+            <h4 class="center">Sign Up for Fetch</h4>
+            <div class="row email">
+                <div class="input-field col s12 left">
+                    <input id="emailSignUpInput" type="email">
+                    <label for="emailSignUpInput">Email</label>
+                </div>
+            </div>
+            <div class="row password">
+                <div class="input-field col s6 left">
+                    <input id="passwordSignUpInput1" type="password">
+                    <label for="passwordSignUpInput1">Password</label>
+                </div>
+                <div class="input-field col s6 right">
+                    <input id="passwordSignUpInput2" type="password">
+                    <label for="passwordSignUpInput2">Reenter Password for Validation</label>
+                </div>
+            </div>
+            <button id="signUpButton" class="btn blue-grey waves-effect waves-light w100" type="submit" name="action">Sign Up</button>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script src="javascript/login.js"></script>
+    <script src="javascript/frontend.js"></script>
+    <!--  jQuery lib -->
+    <script type="text/javascript" src="javascript/alertify.js"></script>
+    <script type="text/javascript" src="javascript/mainSearchPage.js"></script>
+    <!--  transform2d lib-->
+    <!--<script type="text/javascript" src="js/jquery.transform2d.js"></script> -->
+</body>
+
+</html>

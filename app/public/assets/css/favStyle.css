@@ -1,0 +1,41 @@
+
+.card-action {
+	overflow: auto;
+}
+.card-title {
+	color: #ffa500 !important;
+	font-size: 50px !important;
+    font-family: 'Acme', sans-serif !important;
+    padding-left: 30px !important;
+}
+.removePet {
+	font-family: 'Acme', sans-serif !important;
+	color: #ffa500 !important;
+	background-color: #1B435D !important;	
+}
+div.card-action a {
+	font-family: 'Acme', sans-serif !important;
+	color: #ffa500 !important;
+}
+
+p {
+	font-family: 'Acme', sans-serif !important;
+	color: #1B435D !important;
+}
+.adopt {
+	background-color: #1B435D !important;
+	padding-right: 10px;
+}
+a, .white-text {
+	font-family: 'Acme', sans-serif !important;
+	text-align: center;
+}
+.faveImage {
+	height: 300px !important;
+}
+h2 {
+	font-family: 'Acme', sans-serif !important;
+	color: white !important;
+	text-align: center;
+}
+
